@@ -56,6 +56,7 @@ htmlcov/
 # Encrypted files in sandbox (don't commit user's encrypted files)
 sandbox/*.encrypted
 sandbox/*.decrypted
+sandbox/.keys.json
 
 # Key files - NEVER commit real encryption keys!
 config/*.key
