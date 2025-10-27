@@ -11,10 +11,6 @@ else:
 
 # Read requirements
 requirements_file = Path(__file__).parent / "config" / "requirements.txt"
-# Also check for misspelled filename
-if not requirements_file.exists():
-    requirements_file = Path(__file__).parent / "config" / "requeriments.txt"
-
 if requirements_file.exists():
     with open(requirements_file, "r", encoding="utf-8") as fh:
         requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
