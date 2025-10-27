@@ -1,0 +1,8 @@
+# ============================================
+# CryptVault - File Encryption Sandbox
+# Python Requirements
+# ============================================
+
+# Core Encryption Library
+# Required for Fernet encryption (AES-128)
+cryptography>=42.0.0

@@ -1,0 +1,99 @@
+# ============================================================================
+# CryptVault .gitignore
+# ============================================================================
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# IDEs
+.idea/
+.vscode/
+*.code-workspace
+*.swp
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pytest
+.pytest_cache/
+.coverage
+htmlcov/
+
+# ============================================================================
+# CryptVault Specific - IMPORTANT!
+# ============================================================================
+
+# Encrypted files in sandbox (don't commit user's encrypted files)
+sandbox/*.encrypted
+sandbox/*.decrypted
+
+# Key files - NEVER commit real encryption keys!
+config/*.key
+
+# Keep the directories but not their contents
+!sandbox/.gitkeep
+!tests/.gitkeep
+!config/.gitkeep
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+
+# Logs
+*.log
+logs/
+
+# ============================================================================
+# OS files
+# ============================================================================
+
+# Windows
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# ============================================================================
+# Backup files
+# ============================================================================
+
+*.backup
+backup/
