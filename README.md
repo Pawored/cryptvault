@@ -4,9 +4,12 @@
 
 **Professional file encryption system using modern cryptography**
 
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![Platform](https://img.shields.io/badge/platform-linux%20%7C%20macos%20%7C%20windows-lightgrey)](https://github.com/Pawored/cryptvault)
+[![Tests](https://github.com/Pawored/cryptvault/workflows/Tests/badge.svg)](https://github.com/Pawored/cryptvault/actions)
 [![Cryptography](https://img.shields.io/badge/cryptography-42.0.0+-green.svg)](https://cryptography.io/)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 *Protect your files with military-grade encryption (AES-128)*
 
@@ -44,13 +47,44 @@ That's it! Your files are now protected with AES-128 encryption.
 
 ---
 
+## 🎓 Getting Started
+
+### 📖 First-time user?
+
+1. **[Installation Guide](docs/INSTALLATION.md)** - Set up CryptVault in minutes
+2. **[Usage Guide](docs/USAGE.md)** - Learn all commands and options
+3. **[Examples](docs/EXAMPLES.md)** - See real-world use cases
+
+### 🚀 Power user?
+
+1. **[API Reference](docs/API_REFERENCE.md)** - Use CryptVault as a Python library
+2. **[Automation Scripts](scripts/)** - Ready-to-use Bash & PowerShell scripts
+3. **[Security Details](docs/SECURITY.md)** - Cryptographic specifications
+
+---
+
+## 🆚 Why CryptVault?
+
+| Feature | CryptVault | GPG | 7-Zip | Others |
+|---------|-----------|-----|-------|--------|
+| **Easy CLI** | ✅ Intuitive | ❌ Complex | ⚠️ GUI-focused | ⚠️ Varies |
+| **Modern Crypto** | ✅ AES-128 | ⚠️ Legacy algos | ⚠️ Various | ⚠️ Mixed |
+| **Automation** | ✅ 14 scripts | ❌ None | ❌ None | ❌ Rare |
+| **Documentation** | ✅ 10+ guides | ⚠️ Limited | ⚠️ Basic | ❌ Poor |
+| **Pure Python** | ✅ Yes | ❌ No | ❌ No | ⚠️ Varies |
+| **Password KDF** | ✅ PBKDF2 600K | ⚠️ Varies | ❌ None | ⚠️ Varies |
+| **Cross-platform** | ✅ Win/Mac/Linux | ✅ Yes | ✅ Yes | ⚠️ Limited |
+| **Key Management** | ✅ Built-in | ⚠️ External | ❌ None | ❌ None |
+
+---
+
 ## ✨ Key Features
 
 - 🔒 **Military-grade encryption** - Fernet (AES-128 + HMAC)
 - 🔑 **Flexible key management** - Passwords, random keys, or saved keys
 - 🎯 **Simple CLI** - Intuitive command-line interface
 - 📦 **Batch processing** - Encrypt multiple files with the same key
-- 🛡️ **Secure by default** - PBKDF2 with 480,000 iterations
+- 🛡️ **Secure by default** - PBKDF2 with 600,000 iterations (OWASP 2023)
 - 🐍 **Pure Python** - No external dependencies except cryptography
 - 🤖 **Automation ready** - Bash and PowerShell scripts included
 
@@ -121,7 +155,7 @@ CryptVault uses industry-standard cryptography:
 |-----------|------------|
 | Encryption | Fernet (AES-128 CBC) |
 | Authentication | HMAC-SHA256 |
-| Key Derivation | PBKDF2-HMAC-SHA256 (480K iterations) |
+| Key Derivation | PBKDF2-HMAC-SHA256 (600K iterations) |
 | Salt | 16 random bytes per password |
 
 **⚠️ Important:** If you lose your password/key, your files cannot be recovered. Always backup your keys securely.

@@ -27,8 +27,8 @@ except ImportError:
 class CryptVault:
     """Main encryption/decryption engine for CryptVault."""
 
-    # PBKDF2 iterations (OWASP recommended minimum)
-    PBKDF2_ITERATIONS = 480000
+    # PBKDF2 iterations (OWASP 2023 recommendation)
+    PBKDF2_ITERATIONS = 600000
     SALT_LENGTH = 16
 
     def __init__(self, sandbox_dir: str = "sandbox"):

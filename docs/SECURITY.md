@@ -52,13 +52,13 @@ Fernet = AES-128-CBC + HMAC-SHA256
 key = PBKDF2-HMAC-SHA256(
     password=user_password,
     salt=random_16_bytes,
-    iterations=480000,
+    iterations=600000,
     key_length=32
 )
 ```
 
 **Parameters:**
-- **Iterations:** 480,000 (OWASP recommended)
+- **Iterations:** 600,000 (OWASP 2023 recommendation)
 - **Salt:** 16 bytes, randomly generated
 - **Output:** 32 bytes (256 bits)
 
@@ -72,7 +72,7 @@ key = PBKDF2-HMAC-SHA256(
 |--------|-----------|
 | **File Theft** | ✅ AES-128 encryption |
 | **Tampering** | ✅ HMAC authentication |
-| **Brute Force** | ✅ 480K PBKDF2 iterations |
+| **Brute Force** | ✅ 600K PBKDF2 iterations |
 | **Rainbow Tables** | ✅ Random salt per key |
 
 ### Not Protected
