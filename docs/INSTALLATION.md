@@ -48,11 +48,11 @@ For most users, this is all you need:
 git clone https://github.com/pawored/cryptvault.git
 cd cryptvault
 
-# 2. Install dependencies
-pip install -r config/requirements.txt
+# 2. Install CryptVault (installs package + all dependencies)
+pip install .
 
 # 3. Verify installation
-python src/file_encryption_sandbox.py --help
+cryptvault --help
 ```
 
 **Done!** You're ready to start encrypting files.
@@ -78,24 +78,29 @@ git clone git@github.com:pawored/cryptvault.git
 cd cryptvault
 ```
 
-#### Step 2: Install Dependencies
+#### Step 2: Install CryptVault
 
 ```bash
-pip install -r config/requirements.txt
+pip install .
 ```
+
+This installs:
+- CryptVault package
+- All dependencies (cryptography>=42.0.0)
+- `cryptvault` command globally
 
 #### Step 3: Test Installation
 
 ```bash
-python src/file_encryption_sandbox.py --help
+cryptvault --help
 ```
 
 **Expected Output:**
 ```
-usage: file_encryption_sandbox.py [-h] [--sandbox-dir SANDBOX_DIR]
-                                   {encrypt,decrypt,save-key,list-keys} ...
+usage: cryptvault [-h] [--sandbox-dir SANDBOX_DIR]
+                  {encrypt,decrypt,save-key,list-keys} ...
 
-File Encryption Sandbox - Encrypt and decrypt files using Fernet (AES-128)
+CryptVault - Professional File Encryption System
 ...
 ```
 
@@ -166,8 +171,8 @@ This installs additional tools:
 git clone https://github.com/pawored/cryptvault.git
 cd cryptvault
 
-# Install dependencies
-pip install -r config/requirements.txt
+# Install CryptVault
+pip install .
 
 # If you get execution policy errors:
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
@@ -225,7 +230,7 @@ sudo pacman -S python python-pip git
 # Clone and install
 git clone https://github.com/pawored/cryptvault.git
 cd cryptvault
-pip install -r config/requirements.txt
+pip install .
 ```
 
 ---
@@ -271,7 +276,7 @@ python -c "import cryptography; print(cryptography.__version__)"
 ### Run Help Command
 
 ```bash
-python src/file_encryption_sandbox.py --help
+cryptvault --help
 ```
 
 **Expected Output:** Usage information and available commands
@@ -283,13 +288,13 @@ python src/file_encryption_sandbox.py --help
 echo "Hello, World!" > test.txt
 
 # Encrypt it
-python src/file_encryption_sandbox.py encrypt test.txt -p test123
+cryptvault encrypt test.txt -p test123
 
 # Check if encrypted file exists
 ls sandbox/
 
 # Decrypt it
-python src/file_encryption_sandbox.py decrypt sandbox/test.txt.encrypted -p test123
+cryptvault decrypt sandbox/test.txt.encrypted -p test123
 
 # Verify content
 cat sandbox/test.txt.decrypted
@@ -324,7 +329,7 @@ python -m venv venv
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 # Install dependencies
-pip install -r config/requirements.txt
+pip install .
 
 # Deactivate when done
 deactivate
@@ -340,7 +345,7 @@ python3 -m venv venv
 source venv/bin/activate
 
 # Install dependencies
-pip install -r config/requirements.txt
+pip install .
 
 # Deactivate when done
 deactivate
@@ -357,10 +362,10 @@ source venv/bin/activate  # Linux/Mac
 (venv) user@computer:~/cryptvault$
 
 # Now all pip installs go to venv
-pip install -r config/requirements.txt
+pip install .
 
-# Run the application
-python src/file_encryption_sandbox.py encrypt file.txt -p pass
+# Run the application (cryptvault command now available)
+cryptvault encrypt file.txt -p pass
 
 # Deactivate when done
 deactivate
@@ -381,7 +386,7 @@ python3 src/file_encryption_sandbox.py --help
 
 **Solution:** Install pip or use alternative:
 ```bash
-python -m pip install -r config/requirements.txt
+python -m pip install .
 ```
 
 ### Error: "Permission denied"
@@ -398,7 +403,7 @@ pip install --user -r config/requirements.txt
 **Solution:** Upgrade pip:
 ```bash
 python -m pip install --upgrade pip
-pip install -r config/requirements.txt
+pip install .
 ```
 
 ### Error: Building wheel for cryptography failed
@@ -432,21 +437,17 @@ xcode-select --install
 
 ## Post-Installation
 
-### Optional: Add to PATH
+### Command Availability
 
-To use `cryptvault` command from anywhere:
+After installation with `pip install .`, the `cryptvault` command is automatically available system-wide.
 
-#### Linux / macOS
-
-Add to `~/.bashrc` or `~/.zshrc`:
 ```bash
-export PATH="$PATH:/path/to/cryptvault/src"
-alias cryptvault="python /path/to/cryptvault/src/file_encryption_sandbox.py"
+# Use from any directory
+cryptvault encrypt ~/Documents/file.pdf -p password
+cryptvault list-keys
 ```
 
-#### Windows
-
-Add to System PATH through Environment Variables GUI, or use PowerShell profile.
+No additional PATH configuration needed!
 
 ### Optional: Install Shell Completion
 

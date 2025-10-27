@@ -23,21 +23,21 @@
 git clone https://github.com/pawored/cryptvault.git
 cd cryptvault
 
-# Install dependencies
-pip install -r config/requirements.txt
+# Install CryptVault (installs package + all dependencies)
+pip install .
 ```
 
 ### Basic Usage
 
 ```bash
 # Encrypt a file
-python src/file_encryption_sandbox.py encrypt document.pdf -p myPassword123
+cryptvault encrypt document.pdf -p myPassword123
 
 # Decrypt a file
-python src/file_encryption_sandbox.py decrypt sandbox/document.pdf.encrypted -p myPassword123
+cryptvault decrypt sandbox/document.pdf.encrypted -p myPassword123
 
 # List saved keys
-python src/file_encryption_sandbox.py list-keys
+cryptvault list-keys
 ```
 
 That's it! Your files are now protected with AES-128 encryption.
