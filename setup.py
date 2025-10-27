@@ -11,6 +11,10 @@ else:
 
 # Read requirements
 requirements_file = Path(__file__).parent / "config" / "requirements.txt"
+# Also check for misspelled filename
+if not requirements_file.exists():
+    requirements_file = Path(__file__).parent / "config" / "requeriments.txt"
+
 if requirements_file.exists():
     with open(requirements_file, "r", encoding="utf-8") as fh:
         requirements = [line.strip() for line in fh if line.strip() and not line.startswith("#")]
@@ -33,6 +37,7 @@ setup(
     },
     packages=find_packages(where="src"),
     package_dir={"": "src"},
+    py_modules=[],
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
@@ -52,7 +57,7 @@ setup(
     install_requires=requirements,
     entry_points={
         "console_scripts": [
-            "cryptvault=file_encryption_sandbox:main",
+            "cryptvault=cryptvault.file_encryption_sandbox:main",
         ],
     },
     include_package_data=True,
