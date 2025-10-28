@@ -21,12 +21,12 @@ Linux, macOS, and Windows.
 
 ### How do I encrypt a file?
 ```bash
-python src/file_encryption_sandbox.py encrypt myfile.pdf -p MyPassword123!
+cryptvault encrypt myfile.pdf -p MyPassword123!
 ```
 
 ### How do I decrypt a file?
 ```bash
-python src/file_encryption_sandbox.py decrypt myfile.pdf.encrypted -p MyPassword123!
+cryptvault decrypt myfile.pdf.encrypted -p MyPassword123!
 ```
 
 ### Can I encrypt multiple files at once?

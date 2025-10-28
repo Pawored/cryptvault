@@ -168,7 +168,7 @@ python -m pytest --cov=src tests/
 2. **Test your changes**
    ```bash
    # Manual testing
-   python src/file_encryption_sandbox.py encrypt test.pdf -p Pass123!
+   cryptvault encrypt test.pdf -p Pass123!
    
    # Automated tests (if available)
    pytest tests/

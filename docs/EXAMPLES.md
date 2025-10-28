@@ -22,7 +22,7 @@ Real-world examples and use cases for CryptVault.
 
 ```bash
 # Encrypt
-python src/file_encryption_sandbox.py encrypt passport_scan.pdf -p MySecurePass2024!
+cryptvault encrypt passport_scan.pdf -p MySecurePass2024!
 
 # Output:
 # ✓ File encrypted: sandbox/passport_scan.pdf.encrypted
@@ -39,7 +39,7 @@ python src/file_encryption_sandbox.py encrypt passport_scan.pdf -p MySecurePass2
 
 ```bash
 # Decrypt
-python src/file_encryption_sandbox.py decrypt sandbox/passport_scan.pdf.encrypted -p MySecurePass2024!
+cryptvault decrypt sandbox/passport_scan.pdf.encrypted -p MySecurePass2024!
 
 # Output:
 # ✓ File decrypted: sandbox/passport_scan.pdf.decrypted
@@ -55,7 +55,7 @@ python src/file_encryption_sandbox.py decrypt sandbox/passport_scan.pdf.encrypte
 
 ```bash
 # Encrypt with random key
-python src/file_encryption_sandbox.py encrypt top_secret.docx
+cryptvault encrypt top_secret.docx
 
 # Output:
 # ⚠ Randomly generated key: gAAAAABl8xKpQm5fYT9L8w...
@@ -66,7 +66,7 @@ python src/file_encryption_sandbox.py encrypt top_secret.docx
 # Save the key somewhere safe!
 
 # Decrypt later
-python src/file_encryption_sandbox.py decrypt sandbox/top_secret.docx.encrypted \
+cryptvault decrypt sandbox/top_secret.docx.encrypted \
   -k "gAAAAABl8xKpQm5fYT9L8w..."
 ```
 
@@ -80,19 +80,19 @@ python src/file_encryption_sandbox.py decrypt sandbox/top_secret.docx.encrypted 
 
 ```bash
 # Step 1: Create a key for personal documents
-python src/file_encryption_sandbox.py save-key personal-docs -p MyPersonalPass2024!
+cryptvault save-key personal-docs -p MyPersonalPass2024!
 
 # Step 2: Encrypt all important documents
-python src/file_encryption_sandbox.py encrypt ~/Documents/birth_certificate.pdf \
+cryptvault encrypt ~/Documents/birth_certificate.pdf \
   -k personal-docs -p MyPersonalPass2024!
 
-python src/file_encryption_sandbox.py encrypt ~/Documents/social_security.pdf \
+cryptvault encrypt ~/Documents/social_security.pdf \
   -k personal-docs -p MyPersonalPass2024!
 
-python src/file_encryption_sandbox.py encrypt ~/Documents/marriage_certificate.pdf \
+cryptvault encrypt ~/Documents/marriage_certificate.pdf \
   -k personal-docs -p MyPersonalPass2024!
 
-python src/file_encryption_sandbox.py encrypt ~/Documents/will.pdf \
+cryptvault encrypt ~/Documents/will.pdf \
   -k personal-docs -p MyPersonalPass2024!
 
 # Step 3: Upload encrypted files to cloud
@@ -104,7 +104,7 @@ cp sandbox/*.encrypted ~/Dropbox/Important/
 
 **When you need them:**
 ```bash
-python src/file_encryption_sandbox.py decrypt ~/Dropbox/Important/birth_certificate.pdf.encrypted \
+cryptvault decrypt ~/Dropbox/Important/birth_certificate.pdf.encrypted \
   -n personal-docs -p MyPersonalPass2024!
 ```
 
@@ -114,13 +114,13 @@ python src/file_encryption_sandbox.py decrypt ~/Dropbox/Important/birth_certific
 
 ```bash
 # Create key for photos
-python src/file_encryption_sandbox.py save-key private-photos -p PhotoPass2024!
+cryptvault save-key private-photos -p PhotoPass2024!
 
 # Encrypt photo albums
-python src/file_encryption_sandbox.py encrypt ~/Pictures/private/vacation.zip \
+cryptvault encrypt ~/Pictures/private/vacation.zip \
   -k private-photos -p PhotoPass2024!
 
-python src/file_encryption_sandbox.py encrypt ~/Pictures/private/family.zip \
+cryptvault encrypt ~/Pictures/private/family.zip \
   -k private-photos -p PhotoPass2024!
 
 # Move to external drive or cloud
@@ -133,9 +133,9 @@ mv sandbox/*.encrypted /media/backup/encrypted-photos/
 
 ```bash
 # Daily backup
-python src/file_encryption_sandbox.py save-key password-backup -p SecureBackupPass2024!
+cryptvault save-key password-backup -p SecureBackupPass2024!
 
-python src/file_encryption_sandbox.py encrypt ~/.password-store/passwords.kdbx \
+cryptvault encrypt ~/.password-store/passwords.kdbx \
   -k password-backup -p SecureBackupPass2024! \
   -o ~/Backups/passwords-$(date +%Y%m%d).kdbx.enc
 
@@ -149,14 +149,14 @@ rclone copy ~/Backups/passwords-*.enc remote:backups/
 
 ```bash
 # Create key for medical records
-python src/file_encryption_sandbox.py save-key medical-records -p MedicalPass2024!
+cryptvault save-key medical-records -p MedicalPass2024!
 
 # Encrypt records by year
-python src/file_encryption_sandbox.py --sandbox-dir ~/health-vault/2024 \
+cryptvault --sandbox-dir ~/health-vault/2024 \
   encrypt ~/Documents/medical/lab-results-2024.pdf \
   -k medical-records -p MedicalPass2024!
 
-python src/file_encryption_sandbox.py --sandbox-dir ~/health-vault/2024 \
+cryptvault --sandbox-dir ~/health-vault/2024 \
   encrypt ~/Documents/medical/prescriptions-2024.pdf \
   -k medical-records -p MedicalPass2024!
 ```
@@ -171,21 +171,21 @@ python src/file_encryption_sandbox.py --sandbox-dir ~/health-vault/2024 \
 
 ```bash
 # Client A
-python src/file_encryption_sandbox.py save-key client-alpha -p AlphaClient2024!
-python src/file_encryption_sandbox.py encrypt client-alpha-proposal.docx \
+cryptvault save-key client-alpha -p AlphaClient2024!
+cryptvault encrypt client-alpha-proposal.docx \
   -k client-alpha -p AlphaClient2024!
-python src/file_encryption_sandbox.py encrypt client-alpha-contract.pdf \
+cryptvault encrypt client-alpha-contract.pdf \
   -k client-alpha -p AlphaClient2024!
 
 # Client B
-python src/file_encryption_sandbox.py save-key client-beta -p BetaClient2024!
-python src/file_encryption_sandbox.py encrypt client-beta-proposal.docx \
+cryptvault save-key client-beta -p BetaClient2024!
+cryptvault encrypt client-beta-proposal.docx \
   -k client-beta -p BetaClient2024!
-python src/file_encryption_sandbox.py encrypt client-beta-contract.pdf \
+cryptvault encrypt client-beta-contract.pdf \
   -k client-beta -p BetaClient2024!
 
 # List all keys to see organization
-python src/file_encryption_sandbox.py list-keys
+cryptvault list-keys
 ```
 
 ### Case 6: Financial Data
@@ -194,19 +194,19 @@ python src/file_encryption_sandbox.py list-keys
 
 ```bash
 # Create key for financial year
-python src/file_encryption_sandbox.py save-key tax-2024 -p TaxDocuments2024!
+cryptvault save-key tax-2024 -p TaxDocuments2024!
 
 # Encrypt all tax-related files
-python src/file_encryption_sandbox.py encrypt ~/Documents/Taxes/2024/w2.pdf \
+cryptvault encrypt ~/Documents/Taxes/2024/w2.pdf \
   -k tax-2024 -p TaxDocuments2024!
 
-python src/file_encryption_sandbox.py encrypt ~/Documents/Taxes/2024/1099.pdf \
+cryptvault encrypt ~/Documents/Taxes/2024/1099.pdf \
   -k tax-2024 -p TaxDocuments2024!
 
-python src/file_encryption_sandbox.py encrypt ~/Documents/Taxes/2024/receipts.zip \
+cryptvault encrypt ~/Documents/Taxes/2024/receipts.zip \
   -k tax-2024 -p TaxDocuments2024!
 
-python src/file_encryption_sandbox.py encrypt ~/Documents/Taxes/2024/return.pdf \
+cryptvault encrypt ~/Documents/Taxes/2024/return.pdf \
   -k tax-2024 -p TaxDocuments2024!
 
 # Backup to secure location
@@ -219,14 +219,14 @@ cp sandbox/*.encrypted /secure-backup/taxes/2024/
 
 ```bash
 # Create key for project
-python src/file_encryption_sandbox.py save-key project-secrets -p ProjectSecrets2024!
+cryptvault save-key project-secrets -p ProjectSecrets2024!
 
 # Encrypt sensitive files
-python src/file_encryption_sandbox.py encrypt .env \
+cryptvault encrypt .env \
   -k project-secrets -p ProjectSecrets2024! \
   -o .env.encrypted
 
-python src/file_encryption_sandbox.py encrypt config/secrets.yaml \
+cryptvault encrypt config/secrets.yaml \
   -k project-secrets -p ProjectSecrets2024! \
   -o config/secrets.yaml.encrypted
 
@@ -238,7 +238,7 @@ echo ".env" >> .gitignore
 echo "config/secrets.yaml" >> .gitignore
 
 # Team members can decrypt with shared password
-python src/file_encryption_sandbox.py decrypt .env.encrypted \
+cryptvault decrypt .env.encrypted \
   -n project-secrets -p ProjectSecrets2024! \
   -o .env
 ```
@@ -249,11 +249,11 @@ python src/file_encryption_sandbox.py decrypt .env.encrypted \
 
 ```bash
 # Create backup key
-python src/file_encryption_sandbox.py save-key db-backup -p DBBackup2024!
+cryptvault save-key db-backup -p DBBackup2024!
 
 # Create and encrypt backup
 pg_dump mydb > backup.sql
-python src/file_encryption_sandbox.py encrypt backup.sql \
+cryptvault encrypt backup.sql \
   -k db-backup -p DBBackup2024! \
   -o /backups/db-backup-$(date +%Y%m%d).sql.enc
 
@@ -275,13 +275,13 @@ aws s3 cp /backups/db-backup-*.enc s3://my-backups/database/
 **Sender:**
 ```bash
 # Method 1: Using password
-python src/file_encryption_sandbox.py encrypt confidential-report.pdf -p SharedPassword2024!
+cryptvault encrypt confidential-report.pdf -p SharedPassword2024!
 
 # Send file via email/cloud: confidential-report.pdf.encrypted
 # Send password via different channel (SMS, Signal, phone call)
 
 # Method 2: Using random key (more secure)
-python src/file_encryption_sandbox.py encrypt confidential-report.pdf
+cryptvault encrypt confidential-report.pdf
 
 # Output shows: gAAAAABl8xKpQm5fYT9L8w...
 # Send file via email/cloud
@@ -291,10 +291,10 @@ python src/file_encryption_sandbox.py encrypt confidential-report.pdf
 **Receiver:**
 ```bash
 # Method 1: With password
-python src/file_encryption_sandbox.py decrypt confidential-report.pdf.encrypted -p SharedPassword2024!
+cryptvault decrypt confidential-report.pdf.encrypted -p SharedPassword2024!
 
 # Method 2: With key
-python src/file_encryption_sandbox.py decrypt confidential-report.pdf.encrypted \
+cryptvault decrypt confidential-report.pdf.encrypted \
   -k "gAAAAABl8xKpQm5fYT9L8w..."
 ```
 
@@ -304,21 +304,21 @@ python src/file_encryption_sandbox.py decrypt confidential-report.pdf.encrypted 
 
 ```bash
 # First encryption with password
-python src/file_encryption_sandbox.py encrypt ultra-secret.txt -p FirstPassword2024!
+cryptvault encrypt ultra-secret.txt -p FirstPassword2024!
 
 # Second encryption with random key
-python src/file_encryption_sandbox.py encrypt sandbox/ultra-secret.txt.encrypted
+cryptvault encrypt sandbox/ultra-secret.txt.encrypted
 
 # Output: gAAAAABl8xKpQm5fYT9L8w...
 # Now you need BOTH password AND key to decrypt
 
 # To decrypt (reverse order):
 # 1. Decrypt with key
-python src/file_encryption_sandbox.py decrypt sandbox/ultra-secret.txt.encrypted.encrypted \
+cryptvault decrypt sandbox/ultra-secret.txt.encrypted.encrypted \
   -k "gAAAAABl8xKpQm5fYT9L8w..."
 
 # 2. Decrypt with password
-python src/file_encryption_sandbox.py decrypt sandbox/ultra-secret.txt.encrypted.decrypted \
+cryptvault decrypt sandbox/ultra-secret.txt.encrypted.decrypted \
   -p FirstPassword2024!
 ```
 
@@ -328,21 +328,21 @@ python src/file_encryption_sandbox.py decrypt sandbox/ultra-secret.txt.encrypted
 
 ```bash
 # Current setup (old password)
-python src/file_encryption_sandbox.py save-key archive-old -p OldPassword2023
+cryptvault save-key archive-old -p OldPassword2023
 
 # Encrypt files
-python src/file_encryption_sandbox.py encrypt important.pdf -k archive-old -p OldPassword2023
+cryptvault encrypt important.pdf -k archive-old -p OldPassword2023
 
 # Time to rotate (new password)
 # 1. Decrypt with old password
-python src/file_encryption_sandbox.py decrypt sandbox/important.pdf.encrypted \
+cryptvault decrypt sandbox/important.pdf.encrypted \
   -n archive-old -p OldPassword2023
 
 # 2. Create new key
-python src/file_encryption_sandbox.py save-key archive-new -p NewPassword2024!
+cryptvault save-key archive-new -p NewPassword2024!
 
 # 3. Re-encrypt with new password
-python src/file_encryption_sandbox.py encrypt sandbox/important.pdf.decrypted \
+cryptvault encrypt sandbox/important.pdf.decrypted \
   -k archive-new -p NewPassword2024!
 
 # 4. Delete old encrypted file
@@ -358,15 +358,15 @@ mv sandbox/important.pdf.decrypted.encrypted sandbox/important.pdf.encrypted
 
 ```bash
 # Before travel: Encrypt sensitive files
-python src/file_encryption_sandbox.py save-key travel-2024 -p TravelSafe2024!
+cryptvault save-key travel-2024 -p TravelSafe2024!
 
-python src/file_encryption_sandbox.py encrypt ~/Documents/passport.pdf \
+cryptvault encrypt ~/Documents/passport.pdf \
   -k travel-2024 -p TravelSafe2024!
 
-python src/file_encryption_sandbox.py encrypt ~/Documents/visa.pdf \
+cryptvault encrypt ~/Documents/visa.pdf \
   -k travel-2024 -p TravelSafe2024!
 
-python src/file_encryption_sandbox.py encrypt ~/Documents/insurance.pdf \
+cryptvault encrypt ~/Documents/insurance.pdf \
   -k travel-2024 -p TravelSafe2024!
 
 # Upload to cloud (only encrypted files)
@@ -376,7 +376,7 @@ cp sandbox/*.encrypted ~/Dropbox/Travel/
 rm ~/Documents/passport.pdf ~/Documents/visa.pdf ~/Documents/insurance.pdf
 
 # During travel: Access if needed
-python src/file_encryption_sandbox.py decrypt ~/Dropbox/Travel/passport.pdf.encrypted \
+cryptvault decrypt ~/Dropbox/Travel/passport.pdf.encrypted \
   -n travel-2024 -p TravelSafe2024!
 ```
 
@@ -406,7 +406,7 @@ mkdir -p "$DEST"
 for file in "$BACKUP_DIR"/*; do
     if [ -f "$file" ]; then
         echo "Encrypting: $(basename "$file")"
-        python src/file_encryption_sandbox.py encrypt "$file" \
+        cryptvault encrypt "$file" \
             -k "$KEY_NAME" -p "$PASSWORD" \
             -o "$DEST/$(basename "$file").enc"
     fi
@@ -450,7 +450,7 @@ echo "Encrypting all .$EXTENSION files in $DIRECTORY"
 
 find "$DIRECTORY" -type f -name "*.$EXTENSION" | while read file; do
     echo "Processing: $file"
-    python src/file_encryption_sandbox.py encrypt "$file" -p "$PASSWORD"
+    cryptvault encrypt "$file" -p "$PASSWORD"
 done
 
 echo "✅ All .$EXTENSION files encrypted"
@@ -569,7 +569,7 @@ for category in "${!CATEGORIES[@]}"; do
     for file in ${CATEGORIES[$category]}; do
         if [ -f "$file" ]; then
             echo "  - $(basename "$file")"
-            python src/file_encryption_sandbox.py encrypt "$file" \
+            cryptvault encrypt "$file" \
                 -p "$PASSWORD" \
                 -o "$DEST/$(basename "$file").enc"
         fi

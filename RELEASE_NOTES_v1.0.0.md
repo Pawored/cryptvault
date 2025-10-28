@@ -99,7 +99,7 @@ cryptvault list-keys
 
 ## 📋 What's Included
 
-### Core Package (`src/cryptvault/`)
+### Core Package (`cryptvault/`)
 - `file_encryption_sandbox.py` (487 lines) - Main CLI and encryption engine
 - `__init__.py` (38 lines) - Python library interface
 - `demo.py` (291 lines) - Comprehensive usage examples

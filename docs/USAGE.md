@@ -26,7 +26,7 @@ Complete reference for using CryptVault from the command line.
 echo "My secret data" > secret.txt
 
 # Encrypt it with a password
-python src/file_encryption_sandbox.py encrypt secret.txt -p MyPassword123
+cryptvault encrypt secret.txt -p MyPassword123
 
 # Check the result
 ls sandbox/
@@ -37,7 +37,7 @@ ls sandbox/
 
 ```bash
 # Decrypt using the same password
-python src/file_encryption_sandbox.py decrypt sandbox/secret.txt.encrypted -p MyPassword123
+cryptvault decrypt sandbox/secret.txt.encrypted -p MyPassword123
 
 # Check the decrypted file
 cat sandbox/secret.txt.decrypted
@@ -62,18 +62,18 @@ CryptVault provides four main commands:
 ### Basic Syntax
 
 ```bash
-python src/file_encryption_sandbox.py [global-options] <command> [command-options]
+cryptvault [global-options] <command> [command-options]
 ```
 
 ### Get Help
 
 ```bash
 # General help
-python src/file_encryption_sandbox.py --help
+cryptvault --help
 
 # Help for specific command
-python src/file_encryption_sandbox.py encrypt --help
-python src/file_encryption_sandbox.py decrypt --help
+cryptvault encrypt --help
+cryptvault decrypt --help
 ```
 
 ---
@@ -85,7 +85,7 @@ Encrypt files using passwords, random keys, or saved keys.
 ### Syntax
 
 ```bash
-python src/file_encryption_sandbox.py encrypt <input-file> [options]
+cryptvault encrypt <input-file> [options]
 ```
 
 ### Options
@@ -99,7 +99,7 @@ python src/file_encryption_sandbox.py encrypt <input-file> [options]
 ### Method 1: Encrypt with Password
 
 ```bash
-python src/file_encryption_sandbox.py encrypt document.pdf -p MySecurePassword123
+cryptvault encrypt document.pdf -p MySecurePassword123
 ```
 
 **Output:**
@@ -116,7 +116,7 @@ python src/file_encryption_sandbox.py encrypt document.pdf -p MySecurePassword12
 ### Method 2: Encrypt with Random Key
 
 ```bash
-python src/file_encryption_sandbox.py encrypt confidential.docx
+cryptvault encrypt confidential.docx
 ```
 
 **Output:**
@@ -137,10 +137,10 @@ python src/file_encryption_sandbox.py encrypt confidential.docx
 
 ```bash
 # First, save a key
-python src/file_encryption_sandbox.py save-key project-alpha -p AlphaPass2024
+cryptvault save-key project-alpha -p AlphaPass2024
 
 # Then use it to encrypt
-python src/file_encryption_sandbox.py encrypt report.xlsx -k project-alpha -p AlphaPass2024
+cryptvault encrypt report.xlsx -k project-alpha -p AlphaPass2024
 ```
 
 **Output:**
@@ -152,7 +152,7 @@ python src/file_encryption_sandbox.py encrypt report.xlsx -k project-alpha -p Al
 ### Method 4: Custom Output Path
 
 ```bash
-python src/file_encryption_sandbox.py encrypt data.csv \
+cryptvault encrypt data.csv \
   -o /backup/secure/data.csv.enc \
   -p BackupPassword2024
 ```
@@ -166,16 +166,16 @@ python src/file_encryption_sandbox.py encrypt data.csv \
 
 ```bash
 # Encrypt a photo
-python src/file_encryption_sandbox.py encrypt vacation.jpg -p Summer2024!
+cryptvault encrypt vacation.jpg -p Summer2024!
 
 # Encrypt a database backup
-python src/file_encryption_sandbox.py encrypt database_backup.sql -p DBPass_Secure_2024
+cryptvault encrypt database_backup.sql -p DBPass_Secure_2024
 
 # Encrypt with saved key
-python src/file_encryption_sandbox.py encrypt taxes_2024.pdf -k financial-docs -p MyTaxPass
+cryptvault encrypt taxes_2024.pdf -k financial-docs -p MyTaxPass
 
 # Encrypt to specific location
-python src/file_encryption_sandbox.py encrypt sensitive.txt -o ~/encrypted/sensitive.enc -p Pass123
+cryptvault encrypt sensitive.txt -o ~/encrypted/sensitive.enc -p Pass123
 ```
 
 ---
@@ -187,7 +187,7 @@ Decrypt previously encrypted files.
 ### Syntax
 
 ```bash
-python src/file_encryption_sandbox.py decrypt <encrypted-file> [options]
+cryptvault decrypt <encrypted-file> [options]
 ```
 
 ### Options
@@ -202,7 +202,7 @@ python src/file_encryption_sandbox.py decrypt <encrypted-file> [options]
 ### Method 1: Decrypt with Password
 
 ```bash
-python src/file_encryption_sandbox.py decrypt sandbox/document.pdf.encrypted -p MySecurePassword123
+cryptvault decrypt sandbox/document.pdf.encrypted -p MySecurePassword123
 ```
 
 **Output:**
@@ -213,7 +213,7 @@ python src/file_encryption_sandbox.py decrypt sandbox/document.pdf.encrypted -p 
 ### Method 2: Decrypt with Random Key
 
 ```bash
-python src/file_encryption_sandbox.py decrypt sandbox/confidential.docx.encrypted \
+cryptvault decrypt sandbox/confidential.docx.encrypted \
   -k "gAAAAABl8xKpQm5f..."
 ```
 
@@ -225,7 +225,7 @@ python src/file_encryption_sandbox.py decrypt sandbox/confidential.docx.encrypte
 ### Method 3: Decrypt with Saved Key
 
 ```bash
-python src/file_encryption_sandbox.py decrypt sandbox/report.xlsx.encrypted \
+cryptvault decrypt sandbox/report.xlsx.encrypted \
   -n project-alpha -p AlphaPass2024
 ```
 
@@ -238,7 +238,7 @@ python src/file_encryption_sandbox.py decrypt sandbox/report.xlsx.encrypted \
 ### Method 4: Custom Output Path
 
 ```bash
-python src/file_encryption_sandbox.py decrypt /backup/secure/data.csv.enc \
+cryptvault decrypt /backup/secure/data.csv.enc \
   -o ~/restored/data.csv \
   -p BackupPassword2024
 ```
@@ -252,17 +252,17 @@ python src/file_encryption_sandbox.py decrypt /backup/secure/data.csv.enc \
 
 ```bash
 # Decrypt a photo
-python src/file_encryption_sandbox.py decrypt sandbox/vacation.jpg.encrypted -p Summer2024!
+cryptvault decrypt sandbox/vacation.jpg.encrypted -p Summer2024!
 
 # Decrypt database backup
-python src/file_encryption_sandbox.py decrypt sandbox/database_backup.sql.encrypted -p DBPass_Secure_2024
+cryptvault decrypt sandbox/database_backup.sql.encrypted -p DBPass_Secure_2024
 
 # Decrypt with saved key name
-python src/file_encryption_sandbox.py decrypt sandbox/taxes_2024.pdf.encrypted \
+cryptvault decrypt sandbox/taxes_2024.pdf.encrypted \
   -n financial-docs -p MyTaxPass
 
 # Decrypt to specific location
-python src/file_encryption_sandbox.py decrypt ~/encrypted/sensitive.enc \
+cryptvault decrypt ~/encrypted/sensitive.enc \
   -o ~/Documents/sensitive.txt -p Pass123
 ```
 
@@ -277,7 +277,7 @@ Save passwords or keys with descriptive names for easy reuse.
 #### Save a Password
 
 ```bash
-python src/file_encryption_sandbox.py save-key work-projects -p MyWorkPass2024!
+cryptvault save-key work-projects -p MyWorkPass2024!
 ```
 
 **Output:**
@@ -288,7 +288,7 @@ python src/file_encryption_sandbox.py save-key work-projects -p MyWorkPass2024!
 #### Save a Random Key
 
 ```bash
-python src/file_encryption_sandbox.py save-key backup-key \
+cryptvault save-key backup-key \
   -k "gAAAAABl8xKpQm5f..."
 ```
 
@@ -302,7 +302,7 @@ python src/file_encryption_sandbox.py save-key backup-key \
 View all your saved keys and their metadata.
 
 ```bash
-python src/file_encryption_sandbox.py list-keys
+cryptvault list-keys
 ```
 
 **Output:**
@@ -357,7 +357,7 @@ Options that work with any command.
 ### Custom Sandbox Directory
 
 ```bash
-python src/file_encryption_sandbox.py --sandbox-dir /secure/vault encrypt file.txt -p pass
+cryptvault --sandbox-dir /secure/vault encrypt file.txt -p pass
 ```
 
 **Use case:** Organize different projects in different directories
@@ -365,13 +365,13 @@ python src/file_encryption_sandbox.py --sandbox-dir /secure/vault encrypt file.t
 **Example:**
 ```bash
 # Personal files
-python src/file_encryption_sandbox.py --sandbox-dir ~/personal-vault encrypt diary.txt -p pass
+cryptvault --sandbox-dir ~/personal-vault encrypt diary.txt -p pass
 
 # Work files
-python src/file_encryption_sandbox.py --sandbox-dir ~/work-vault encrypt report.docx -p pass
+cryptvault --sandbox-dir ~/work-vault encrypt report.docx -p pass
 
 # Backups
-python src/file_encryption_sandbox.py --sandbox-dir /backup/encrypted encrypt data.sql -p pass
+cryptvault --sandbox-dir /backup/encrypted encrypt data.sql -p pass
 ```
 
 ---
@@ -382,12 +382,12 @@ python src/file_encryption_sandbox.py --sandbox-dir /backup/encrypted encrypt da
 
 ```bash
 # Morning: Encrypt sensitive work documents
-python src/file_encryption_sandbox.py save-key daily-work -p DailyPass2024!
-python src/file_encryption_sandbox.py encrypt client-data.xlsx -k daily-work -p DailyPass2024!
-python src/file_encryption_sandbox.py encrypt meeting-notes.docx -k daily-work -p DailyPass2024!
+cryptvault save-key daily-work -p DailyPass2024!
+cryptvault encrypt client-data.xlsx -k daily-work -p DailyPass2024!
+cryptvault encrypt meeting-notes.docx -k daily-work -p DailyPass2024!
 
 # Evening: Decrypt when needed
-python src/file_encryption_sandbox.py decrypt sandbox/client-data.xlsx.encrypted \
+cryptvault decrypt sandbox/client-data.xlsx.encrypted \
   -n daily-work -p DailyPass2024!
 ```
 
@@ -396,7 +396,7 @@ python src/file_encryption_sandbox.py decrypt sandbox/client-data.xlsx.encrypted
 ```bash
 # Sender:
 # 1. Encrypt file
-python src/file_encryption_sandbox.py encrypt secret-project.zip
+cryptvault encrypt secret-project.zip
 
 # Output shows key: gAAAAABl8xKpQm5f...
 
@@ -407,7 +407,7 @@ python src/file_encryption_sandbox.py encrypt secret-project.zip
 # 1. Download encrypted file
 # 2. Receive key separately
 # 3. Decrypt
-python src/file_encryption_sandbox.py decrypt secret-project.zip.encrypted \
+cryptvault decrypt secret-project.zip.encrypted \
   -k "gAAAAABl8xKpQm5f..."
 ```
 
@@ -415,17 +415,17 @@ python src/file_encryption_sandbox.py decrypt secret-project.zip.encrypted \
 
 ```bash
 # Create encrypted backups
-python src/file_encryption_sandbox.py save-key cloud-backup -p CloudBackup2024!
+cryptvault save-key cloud-backup -p CloudBackup2024!
 
 # Encrypt important files
-python src/file_encryption_sandbox.py encrypt ~/Documents/taxes.pdf -k cloud-backup -p CloudBackup2024!
-python src/file_encryption_sandbox.py encrypt ~/Documents/contracts.zip -k cloud-backup -p CloudBackup2024!
+cryptvault encrypt ~/Documents/taxes.pdf -k cloud-backup -p CloudBackup2024!
+cryptvault encrypt ~/Documents/contracts.zip -k cloud-backup -p CloudBackup2024!
 
 # Upload encrypted files to Dropbox/Google Drive
 cp sandbox/*.encrypted ~/Dropbox/Backups/
 
 # To restore later:
-python src/file_encryption_sandbox.py decrypt ~/Dropbox/Backups/taxes.pdf.encrypted \
+cryptvault decrypt ~/Dropbox/Backups/taxes.pdf.encrypted \
   -n cloud-backup -p CloudBackup2024!
 ```
 
@@ -433,17 +433,17 @@ python src/file_encryption_sandbox.py decrypt ~/Dropbox/Backups/taxes.pdf.encryp
 
 ```bash
 # Project A
-python src/file_encryption_sandbox.py --sandbox-dir ~/vaults/project-a \
+cryptvault --sandbox-dir ~/vaults/project-a \
   save-key proj-a -p ProjectA_Pass2024
 
-python src/file_encryption_sandbox.py --sandbox-dir ~/vaults/project-a \
+cryptvault --sandbox-dir ~/vaults/project-a \
   encrypt design.psd -k proj-a -p ProjectA_Pass2024
 
 # Project B
-python src/file_encryption_sandbox.py --sandbox-dir ~/vaults/project-b \
+cryptvault --sandbox-dir ~/vaults/project-b \
   save-key proj-b -p ProjectB_Pass2024
 
-python src/file_encryption_sandbox.py --sandbox-dir ~/vaults/project-b \
+cryptvault --sandbox-dir ~/vaults/project-b \
   encrypt code.zip -k proj-b -p ProjectB_Pass2024
 ```
 
@@ -455,12 +455,12 @@ python src/file_encryption_sandbox.py --sandbox-dir ~/vaults/project-b \
 
 ```bash
 # ❌ BAD - Weak passwords
-python src/file_encryption_sandbox.py encrypt file.txt -p "123456"
-python src/file_encryption_sandbox.py encrypt file.txt -p "password"
+cryptvault encrypt file.txt -p "123456"
+cryptvault encrypt file.txt -p "password"
 
 # ✅ GOOD - Strong passwords
-python src/file_encryption_sandbox.py encrypt file.txt -p "Tr0nc0!D3#Ar0bl3s_2024"
-python src/file_encryption_sandbox.py encrypt file.txt -p "My$ecur3P@ssw0rd!2024"
+cryptvault encrypt file.txt -p "Tr0nc0!D3#Ar0bl3s_2024"
+cryptvault encrypt file.txt -p "My$ecur3P@ssw0rd!2024"
 ```
 
 **Password Requirements:**
@@ -476,7 +476,7 @@ python src/file_encryption_sandbox.py encrypt file.txt -p "My$ecur3P@ssw0rd!2024
 cp sandbox/.keys.json ~/safe-backup/.keys.json.backup
 
 # Or encrypt the keys file itself
-python src/file_encryption_sandbox.py encrypt sandbox/.keys.json -p MasterPassword2024!
+cryptvault encrypt sandbox/.keys.json -p MasterPassword2024!
 ```
 
 ### Tip 3: Use Aliases (Linux/Mac)
@@ -507,7 +507,7 @@ Create a bash script for batch encryption:
 PASSWORD="MyBatchPassword2024!"
 
 for file in ~/Documents/*.pdf; do
-    python src/file_encryption_sandbox.py encrypt "$file" -p "$PASSWORD"
+    cryptvault encrypt "$file" -p "$PASSWORD"
 done
 
 echo "✅ All PDFs encrypted"
@@ -517,10 +517,10 @@ echo "✅ All PDFs encrypted"
 
 ```bash
 # 1. Encrypt
-python src/file_encryption_sandbox.py encrypt important.doc -p pass
+cryptvault encrypt important.doc -p pass
 
 # 2. Test decryption
-python src/file_encryption_sandbox.py decrypt sandbox/important.doc.encrypted -p pass
+cryptvault decrypt sandbox/important.doc.encrypted -p pass
 
 # 3. Verify content matches
 diff important.doc sandbox/important.doc.decrypted
@@ -533,13 +533,13 @@ rm important.doc
 
 ```bash
 # ❌ BAD - Generic names
-python src/file_encryption_sandbox.py save-key key1 -p pass
-python src/file_encryption_sandbox.py save-key mykey -p pass
+cryptvault save-key key1 -p pass
+cryptvault save-key mykey -p pass
 
 # ✅ GOOD - Descriptive names
-python src/file_encryption_sandbox.py save-key tax-documents-2024 -p pass
-python src/file_encryption_sandbox.py save-key client-abc-contracts -p pass
-python src/file_encryption_sandbox.py save-key personal-photos-backup -p pass
+cryptvault save-key tax-documents-2024 -p pass
+cryptvault save-key client-abc-contracts -p pass
+cryptvault save-key personal-photos-backup -p pass
 ```
 
 ### Tip 7: Organize by Sandbox Directories
@@ -549,9 +549,9 @@ python src/file_encryption_sandbox.py save-key personal-photos-backup -p pass
 mkdir -p ~/vaults/{personal,work,backup}
 
 # Use different sandboxes
-python src/file_encryption_sandbox.py --sandbox-dir ~/vaults/personal encrypt diary.txt -p pass
-python src/file_encryption_sandbox.py --sandbox-dir ~/vaults/work encrypt report.docx -p pass
-python src/file_encryption_sandbox.py --sandbox-dir ~/vaults/backup encrypt data.db -p pass
+cryptvault --sandbox-dir ~/vaults/personal encrypt diary.txt -p pass
+cryptvault --sandbox-dir ~/vaults/work encrypt report.docx -p pass
+cryptvault --sandbox-dir ~/vaults/backup encrypt data.db -p pass
 ```
 
 ### Tip 8: Document Your Keys
@@ -576,26 +576,26 @@ Used for: All client legal documents
 
 ```bash
 # ENCRYPT
-python src/file_encryption_sandbox.py encrypt <file> -p <password>
-python src/file_encryption_sandbox.py encrypt <file>  # Random key
-python src/file_encryption_sandbox.py encrypt <file> -k <key-name> -p <password>
-python src/file_encryption_sandbox.py encrypt <file> -o <output> -p <password>
+cryptvault encrypt <file> -p <password>
+cryptvault encrypt <file>  # Random key
+cryptvault encrypt <file> -k <key-name> -p <password>
+cryptvault encrypt <file> -o <output> -p <password>
 
 # DECRYPT
-python src/file_encryption_sandbox.py decrypt <file> -p <password>
-python src/file_encryption_sandbox.py decrypt <file> -k <base64-key>
-python src/file_encryption_sandbox.py decrypt <file> -n <key-name> -p <password>
-python src/file_encryption_sandbox.py decrypt <file> -o <output> -p <password>
+cryptvault decrypt <file> -p <password>
+cryptvault decrypt <file> -k <base64-key>
+cryptvault decrypt <file> -n <key-name> -p <password>
+cryptvault decrypt <file> -o <output> -p <password>
 
 # KEY MANAGEMENT
-python src/file_encryption_sandbox.py save-key <name> -p <password>
-python src/file_encryption_sandbox.py save-key <name> -k <base64-key>
-python src/file_encryption_sandbox.py list-keys
+cryptvault save-key <name> -p <password>
+cryptvault save-key <name> -k <base64-key>
+cryptvault list-keys
 
 # GLOBAL OPTIONS
-python src/file_encryption_sandbox.py --sandbox-dir <path> <command>
-python src/file_encryption_sandbox.py --help
-python src/file_encryption_sandbox.py <command> --help
+cryptvault --sandbox-dir <path> <command>
+cryptvault --help
+cryptvault <command> --help
 ```
 
 ---
