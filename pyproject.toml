@@ -40,8 +40,5 @@ Repository = "https://github.com/pawored/cryptvault"
 [project.scripts]
 cryptvault = "cryptvault.file_encryption_sandbox:main"
 
-[tool.setuptools]
-package-dir = {"" = "src"}
-
 [tool.setuptools.packages.find]
-where = ["src"]
+include = ["cryptvault*"]

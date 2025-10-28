@@ -31,8 +31,7 @@ setup(
         "Source": "https://github.com/pawored/cryptvault",
         "Documentation": "https://github.com/pawored/cryptvault/blob/main/docs/",
     },
-    packages=find_packages(where="src"),
-    package_dir={"": "src"},
+    packages=["cryptvault"],
     py_modules=[],
     classifiers=[
         "Development Status :: 4 - Beta",
