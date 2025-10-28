@@ -94,7 +94,7 @@ CryptVault isn't in PATH. Use full path:
 
 ```bash
 # From project root
-python src/file_encryption_sandbox.py encrypt file.pdf -p Pass123!
+cryptvault encrypt file.pdf -p Pass123!
 
 # Or navigate to src
 cd src
@@ -148,7 +148,7 @@ Get-ExecutionPolicy
 **Solutions:**
 ```bash
 # Try again carefully
-python src/file_encryption_sandbox.py decrypt file.encrypted -p CorrectPassword!
+cryptvault decrypt file.encrypted -p CorrectPassword!
 
 # Check Caps Lock and keyboard layout
 
@@ -168,18 +168,18 @@ ls -lh file.encrypted  # Should have size > 0
 
 **Option 1:** Use different output name
 ```bash
-python src/file_encryption_sandbox.py encrypt file.pdf -p Pass! -o file-backup.encrypted
+cryptvault encrypt file.pdf -p Pass! -o file-backup.encrypted
 ```
 
 **Option 2:** Delete existing file
 ```bash
 rm sandbox/file.pdf.encrypted
-python src/file_encryption_sandbox.py encrypt file.pdf -p Pass!
+cryptvault encrypt file.pdf -p Pass!
 ```
 
 **Option 3:** Force overwrite (if implemented)
 ```bash
-python src/file_encryption_sandbox.py encrypt file.pdf -p Pass! --force
+cryptvault encrypt file.pdf -p Pass! --force
 ```
 
 ---
@@ -196,7 +196,7 @@ python src/file_encryption_sandbox.py encrypt file.pdf -p Pass! --force
 ls -l myfile.pdf
 
 # Use full path
-python src/file_encryption_sandbox.py encrypt /full/path/to/file.pdf -p Pass!
+cryptvault encrypt /full/path/to/file.pdf -p Pass!
 
 # Or navigate to file directory
 cd /path/to/files
@@ -238,10 +238,10 @@ file file.encrypted  # Should show "data"
 ls config/*.key
 
 # Verify key name (without .key extension)
-python src/file_encryption_sandbox.py list-keys
+cryptvault list-keys
 
 # Create key if missing
-python src/file_encryption_sandbox.py generate-key -n my-key -p MyPassword!
+cryptvault generate-key -n my-key -p MyPassword!
 ```
 
 ---
@@ -374,7 +374,7 @@ Start-ScheduledTask -TaskName "CryptVault Backup"
 ```bash
 # Monitor progress
 # Add verbose flag (if implemented)
-python src/file_encryption_sandbox.py encrypt largefile.zip -p Pass! -v
+cryptvault encrypt largefile.zip -p Pass! -v
 
 # For very large files, consider:
 # 1. Split file
@@ -382,7 +382,7 @@ split -b 500M largefile.zip largefile.part-
 
 # 2. Encrypt parts
 for part in largefile.part-*; do
-    python src/file_encryption_sandbox.py encrypt $part -p Pass!
+    cryptvault encrypt $part -p Pass!
 done
 
 # 3. Combine encrypted parts later
@@ -420,7 +420,7 @@ df -h
 
 # Delete originals after verifying encryption
 # But ONLY after verifying!
-python src/file_encryption_sandbox.py decrypt file.encrypted -p Pass!
+cryptvault decrypt file.encrypted -p Pass!
 diff file.pdf file.pdf.decrypted  # Verify identical
 rm file.pdf  # Delete original
 ```
