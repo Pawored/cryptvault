@@ -26,7 +26,7 @@ git clone https://github.com/pawored/cryptvault.git
 cd cryptvault
 
 # Install CryptVault (installs package + all dependencies)
-pip install .
+pipx install .
 ```
 
 ### Basic Usage
